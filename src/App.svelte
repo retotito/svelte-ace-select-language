@@ -1,11 +1,7 @@
 <script lang="ts">
   import { AceEditor } from "svelte-ace";
-  // import "brace/mode/javascript";
-  // import "brace/mode/html";
   import "brace/mode/css";
   import "brace/theme/dracula";
-  // const test:string = "brace/mode/json"
-  //import `${test}`;
   import codeEditorLangList from './assets/AceEditorLanguages.json'
   let text = ""
   const codeLangList = codeEditorLangList
@@ -18,19 +14,14 @@
   async function onChangeSelect (e:any) {
     const name = e.target.value
     await importDynamic(name)
-    console.log("importDynamic returned")
     codeLangSelected = name
   }
   async function importDynamic (name: string) {
     const path = '../node_modules/brace/mode/'+ name + '.js'
     console.log("--path: ",path)
     await import(`${path}`)
-    // const test = await import(`${path}`)
-    // console.log(test)
-    console.log("dynamicaly imported")
     return 
   }
-
 </script>
 
 <main>
